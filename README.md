@@ -1,7 +1,7 @@
 #=====================
 这个是服务的大作业 
 
-我是用Spring MVC + Spring Jdbc 来完成的
+我是用Spring MVC + Spring Jdbc + JDK WebService来完成的
 
 #===============2014年6月1日
 ###
