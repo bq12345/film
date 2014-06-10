@@ -3,11 +3,14 @@
  */
 package org.bq.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.bq.model.Film;
+import org.bq.model.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 
 
@@ -69,6 +72,26 @@ public class FilmDAO {
 					id);
 		}
 		return null;
+	}
+	
+	/**
+	 * Add a film
+	 */
+	public int addFilm(final Film film) {
+		String sql = "insert into wait (name,password,age,love,email) values (?,?,?,?,?)";
+		System.out.println("Insert into sql---" + sql);
+		int i = jdbcTemplate.update(sql, new PreparedStatementSetter() {
+			@Override
+			public void setValues(java.sql.PreparedStatement ps)
+					throws SQLException {
+				ps.setString(1, user.getUsername());
+				ps.setString(2, user.getPassword());
+				ps.setInt(3, user.getAge());
+				ps.setString(4, user.getLove());
+				ps.setString(5, user.getEmail());
+			}
+		});
+		return i;
 	}
 
 	/**

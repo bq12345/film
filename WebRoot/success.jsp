@@ -74,7 +74,7 @@ p#back-to-top a span {
 				<div class="col-md-3">
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav top-nav menu">
-							<li><a href="user.html">操作成功</a></li>
+							<li><a href="index.html">操作成功</a></li>
 						</ul>
 					</div>
 				</div>
@@ -83,48 +83,28 @@ p#back-to-top a span {
 	</div>
 
 	<div class="container">
-		<div class="col-xs-12" id="page" style="position: relative"></div>
-			
+		<div class="col-xs-12" id="page"
+			style="margin-top:200px;text-align: center;min-height: 400px;">
+			<h4 class="text-info text-center" id="jump">J返回主页</h4>
+
+		</div>
 	</div>
 	<footer style="text-align: center;">
 		<p>&copy; 电影搜索 2014.All rights reserved</p>
 	</footer>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#logout").click(function() {
-				$.get("logout.do", function(data) {
-					location.href = "index.html";
-				});
-			});
-			$('.menu').smint({
-				'scrollSpeed' : 1000
-			});
-		});
-	</script>
 	<script>
-		$(function() {
-			//当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
-			$(function() {
-				$(window).scroll(function() {
-					if ($(window).scrollTop() > 400) {
-						$("#back-to-top").fadeIn(1000);
-					} else {
-						$("#back-to-top").fadeOut(1000);
-					}
-				});
-				//当点击跳转链接后，回到页面顶部位置
-				$("#back-to-top").click(function() {
-					//注意scrollTop 到0即可
-					$('body,html').animate({
-						scrollTop : 0
-					}, 1000);
-					return false;
-				});
-			});
-		});
+		function countDown(secs) {
+			var jumpTo = document.getElementById('jump');
+			jumpTo.innerHTML = "正在返回主页，剩余 " + secs
+					+ " 秒...";
+
+			if (--secs > 0) {
+				setTimeout("countDown(" + secs + ")", 1000);
+			} else {
+				location.href = "index.html";
+			}
+		}
+		countDown(4);
 	</script>
-	<p id="back-to-top">
-		<a href="#top"><span></span>返回顶部</a>
-	</p>
 </body>
 </html>

@@ -41,7 +41,7 @@ public class UserDAO {
 	}
 
 	/**
-	 * Query user by name and password
+	 * Add a user
 	 */
 	public int addUser(final User user) {
 		System.out.println(user.toString());

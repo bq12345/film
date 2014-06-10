@@ -256,7 +256,7 @@ p#back-to-top a span {
 
 
 			<div class="add container" style="height: 620px;width: 50%">
-				<form id="addFilm" action="addFilm" method="post">
+				<form id="addFilm" action="addFilm.do" method="post">
 					<fieldset>
 						<legend>添加电影</legend>
 						<div class="form-group">
@@ -274,25 +274,25 @@ p#back-to-top a span {
 						<div class="form-group">
 							<label for="film-url">地址:</label> <input type="url" id="film-url"
 								name="url" class="form-control" placeholder="请输入链接地址"
-								value="http://" required="true">
+								value="http://" required="required">
 						</div>
 						<div class="form-group">
 							<label for="film-director">导演:</label> <span class="text-danger"
 								id="film-director-error" style="display: none">名字不正确</span> <input
-								type="text" id="film-director" name="directpr"
-								class="form-control" placeholder="请输入导演名字" required="true">
+								type="text" id="film-director" name="director"
+								class="form-control" placeholder="请输入导演名字" required="required">
 						</div>
 						<div class="form-group">
 							<label for="film-watch">观看地址:</label> <span class="text-danger"
 								id="film-watch-error" style="display: none">地址不正确</span> <input
 								type="url" id="film-watch" name="watch" class="form-control"
-								placeholder="请输入观看地址" required="true">
+								placeholder="请输入观看地址" required="required">
 						</div>
 						<div class="form-group">
 							<label for="film-date">上映时间:</label> <span class="text-danger"
 								id="film-date-error" style="display: none">时间格式不正确</span> <input
 								type="date" id="film-date" name="date" class="form-control"
-								placeholder="请输入上映时间" required="true">
+								placeholder="请输入上映时间" required="required">
 						</div>
 						<br />
 
