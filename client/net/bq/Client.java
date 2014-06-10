@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * @author 白强
+ * @author bq
  * @version 1.0
  */
 public class Client {
@@ -24,7 +24,7 @@ public class Client {
 		FilmServiceService service = new FilmServiceService();
 		FilmService handler = service.getFilmServicePort();
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("请输入要搜索的电影名称:");
+		System.out.println("result:");
 		String name = scanner.next();
 		List<Film> list = handler.search(name);
 		for (Film f : list) {

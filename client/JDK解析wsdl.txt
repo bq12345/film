@@ -1,2 +1,1 @@
 wsimport -p net.bq -keep http://localhost:8888/film?wsdl
-运行Client端程序即可

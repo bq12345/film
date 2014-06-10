@@ -1,0 +1,73 @@
+<form id="sign" action="addUser" method="post" style="position: absolute;top: 100px;left:50%;margin-left:30px;width: 50%;opacity: 0">
+    <fieldset>
+        <legend>用户注册</legend>
+        <div class="form-group">
+            <label for="sign-username">姓名:</label>
+            <span class="text-danger" id="sign-username-error" style="display: none">用户名应该在5-15位之间</span>
+            <input type="text" id="sign-username"
+                   name="username" placeholder="请输入注册的用户名"
+                   class="form-control" required="true">
+        </div>
+        <div class="form-group">
+            <label for="sign-password">密码:</label>
+            <span class="text-danger" id="sign-password-error" style="display: none">密码长度不应该小于六位</span>
+            <input type="password" id="sign-password" name="password" placeholder="请输入密码" class="form-control" required="true" >
+        </div>
+        <div class="form-group">
+            <label for="sign-age">年龄:</label>
+            <input type="number" id="sign-age" name="age" class="form-control" placeholder="请输入年龄" min="5" max="100" required="true">
+        </div>
+        <div class="form-group">
+            <label for="sign-email">E-mail:</label>
+            <span class="text-danger" id="sign-email-error" style="display: none">邮件格式不正确</span>
+            <input type="email" id="sign-email" name="email" class="form-control" placeholder="请输入E-mail" required="true">
+        </div>
+
+        <br/>
+
+        <div class="form-group">
+            <input type="submit" value="提交" class="btn btn-primary btn-lg btn-block">
+        </div>
+    </fieldset>
+</form>
+<script>
+       $(function(){
+            $("#sign-username").blur(function(){
+                if($(this).parent().hasClass("has-error")){
+                    $(this).parent().removeClass("has-error");
+                }
+                $("#sign-username-error").css("display","none");
+                var username=$("#sign-username").val();
+                 if(username.length<5||username.length>15){
+                     $("#sign-username-error").css("display","inline");
+                        $(this).parent().addClass("has-error");
+                     $(this).focus();
+                 }
+            });
+           $("#sign-password").blur(function(){
+               if($(this).parent().hasClass("has-error")){
+                   $(this).parent().removeClass("has-error");
+               }
+               $("#sign-password-error").css("display","none");
+               var password=$("#sign-password").val();
+               if(password.length<6){
+                   $("#sign-password-error").css("display","inline");
+                   $(this).parent().addClass("has-error");
+                   $(this).focus();
+               }
+           });
+
+           $("#sign-email").blur(function(){
+               if($(this).parent().hasClass("has-error")){
+                   $(this).parent().removeClass("has-error");
+               }
+               $("#sign-email-error").css("display","none");
+               var email=$("#sign-email").val();
+               if(!/^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/.test(email)){
+                   $("#sign-email-error").css("display","inline");
+                   $(this).parent().addClass("has-error");
+                   $(this).focus();
+               }
+           });
+       });
+</script>

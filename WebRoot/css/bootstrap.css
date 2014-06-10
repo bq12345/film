@@ -320,7 +320,6 @@ textarea {
 }
 
 a {
-  color: #428bca;
   text-decoration: none;
   cursor: pointer;
 }
@@ -328,7 +327,6 @@ a {
 a:hover,
 a:focus {
   color: #2a6496;
-  text-decoration: underline;
 }
 
 a:focus {
@@ -6067,7 +6065,7 @@ button.close {
 
 @media screen and (min-width: 768px) {
   .modal-dialog {
-    width: 600px;
+    width: 400px;
     margin: 30px auto;
   }
   .modal-content {

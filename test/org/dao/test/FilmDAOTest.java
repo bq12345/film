@@ -18,7 +18,7 @@ public class FilmDAOTest {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(
 				"applicationContext.xml");
 		FilmDAO dao = FilmDAO.getFromApplicationContext(ctx);
-		List<Film> list = dao.queryByName("ษ๚ปฏฮฃป๚");
+		List<Film> list = dao.queryByName("้’ข้“");
 		/*
 		 * for(Film f: list){ System.out.println(f); }
 		 */

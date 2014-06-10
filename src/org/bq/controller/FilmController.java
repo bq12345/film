@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @author 白强
+ * @author 鐧藉己
  * @version 1.0
  */
 @Controller
@@ -46,7 +46,7 @@ public class FilmController {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		System.out.println("参数--------" + name);
+		System.out.println("鍙傛暟--------" + name);
 		List<Film> list = dao.queryByName(name);
 		JsonConfig jsonConfig = new JsonConfig();
 		jsonConfig.setJsonPropertyFilter(new PropertyFilter() {

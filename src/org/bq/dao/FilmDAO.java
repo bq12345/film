@@ -10,9 +10,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 
+
 /**
- * @author 白强
- * @version 1.0
+ * @author 鐧藉己
  */
 public class FilmDAO {
 	public static final int pageSize = 8;
@@ -56,7 +56,6 @@ public class FilmDAO {
 	}
 
 	/**
-	 * 得到某个电影的具体信息
 	 * 
 	 * @param id
 	 * @return
@@ -73,7 +72,7 @@ public class FilmDAO {
 	}
 
 	/**
-	 * 得到bean
+	 * Get bean
 	 * 
 	 * @param ctx
 	 * @return

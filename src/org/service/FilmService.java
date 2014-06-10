@@ -15,7 +15,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * @author °×Ç¿
+ * @author ç™½å¼º
  * @version 1.0
  */
 @WebService
