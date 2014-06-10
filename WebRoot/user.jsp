@@ -378,7 +378,7 @@ p#back-to-top a span {
     $(document).ready(function () {
         $("#logout").click(function () {
             $.get("logout.do", function (data) {
-               location.href("index.html");
+               location.href="index.html";
             });
         });
         $('.menu').smint({
