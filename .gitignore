@@ -5,7 +5,6 @@
 *.pydevproject
 .project
 .metadata
-sql/
 bin/
 tmp/
 *.tmp
@@ -141,7 +140,7 @@ csx
 AppPackages/
 
 # Others
-
+sql/
 *.Cache
 ClientBin/
 [Ss]tyle[Cc]op.*
