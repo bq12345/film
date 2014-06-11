@@ -20,6 +20,9 @@ public class LogoutController {
 		if (req.getSession().getAttribute("user") != null) {
 			req.getSession().removeAttribute("user");
 		}
+		if (req.getSession().getAttribute("admin") != null) {
+			req.getSession().removeAttribute("admin");
+		}
 		return "success";
 	}
 }

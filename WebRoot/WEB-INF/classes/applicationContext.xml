@@ -28,12 +28,16 @@
 	<bean id="waitDAO" class="org.bq.dao.WaitDAO">
 		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
 	</bean>
-	
+
+	<bean id="adminDAO" class="org.bq.dao.AdminDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+
 	<bean id="film" class="org.bq.controller.FilmController">
 		<property name="dao" ref="filmDAO"></property>
 	</bean>
-	
-	
+
+
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">

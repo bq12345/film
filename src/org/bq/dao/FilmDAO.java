@@ -3,11 +3,13 @@
  */
 package org.bq.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.bq.model.Film;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 
 /**
@@ -71,6 +73,28 @@ public class FilmDAO {
 	}
 
 	/**
+	 * Add a film
+	 * 
+	 * @param film
+	 */
+	public int addFilm(final Film film) {
+		String sql = "insert into film(name,filmUrl,description ,director,showtime,view_link) values(?,?,?,?,?,?)";
+		int i = jdbcTemplate.update(sql, new PreparedStatementSetter() {
+			@Override
+			public void setValues(java.sql.PreparedStatement ps)
+					throws SQLException {
+				ps.setString(1, film.getName());
+				ps.setString(2, film.getFilmUrl());
+				ps.setString(3, film.getDescription());
+				ps.setString(4, film.getDirector());
+				ps.setString(5, film.getShowtime());
+				ps.setString(6, film.getView_link());
+			}
+		});
+		return i;
+	}
+
+	/**
 	 * Get bean
 	 * 
 	 * @param ctx
@@ -79,4 +103,5 @@ public class FilmDAO {
 	public static FilmDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (FilmDAO) ctx.getBean("filmDAO");
 	}
+
 }

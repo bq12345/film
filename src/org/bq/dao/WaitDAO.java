@@ -6,7 +6,6 @@ package org.bq.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.bq.model.User;
 import org.bq.model.Wait;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,6 +29,22 @@ public class WaitDAO {
 
 	/**
 	 * Query all waits
+	 */
+	public List<Wait> query(int p) {
+		if (p < 1) {
+			p = 1;
+		}
+		String sql = "select id,name,description,date,watch,url,director from wait limit "
+				+ (p - 1) * pageSize + "," + p * pageSize;
+		System.out.println("Query SQL---" + sql);
+		List<Wait> list = this.getJdbcTemplate().query(sql,
+				ParameterizedBeanPropertyRowMapper.newInstance(Wait.class),
+				new Object[] {});
+		return list;
+	}
+
+	/**
+	 * Query all waits with sender=id
 	 */
 	public List<Wait> query(int p, int id) {
 		if (p < 1) {
