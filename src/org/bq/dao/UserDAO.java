@@ -41,6 +41,19 @@ public class UserDAO {
 	}
 
 	/**
+	 * Query user by id
+	 */
+	public User getUser(int id) {
+		String sql = "select id,username,password,age,love,email from user where id=?";
+		if (jdbcTemplate.queryForRowSet(sql, id).next()) {
+			return jdbcTemplate.queryForObject(sql,
+					ParameterizedBeanPropertyRowMapper.newInstance(User.class),
+					id);
+		}
+		return null;
+	}
+
+	/**
 	 * Add a user
 	 */
 	public int addUser(final User user) {
@@ -59,6 +72,22 @@ public class UserDAO {
 			}
 		});
 		return i;
+	}
+
+	/**
+	 * Update a user
+	 * 
+	 * @param i
+	 * @param user
+	 */
+	public void updateUser(final User user) {
+		String sql = "update user set username=?,password=MD5(?),age=?,love=?,email=? where id=?";
+		System.out.println("Update sql---" + sql);
+		jdbcTemplate.update(
+				sql,
+				new Object[] { user.getUsername(), user.getPassword(),
+						user.getAge(), user.getLove(), user.getEmail(),
+						user.getId() });
 	}
 
 }

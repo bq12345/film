@@ -2,11 +2,14 @@ package org.bq.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.bq.dao.UserDAO;
+import org.bq.dao.WaitDAO;
 import org.bq.model.User;
+import org.bq.model.Wait;
 import org.film.util.RSAUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LoginController {
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	private WaitDAO waitDAO;
+	
+	public WaitDAO getWaitDAO() {
+		return waitDAO;
+	}
+
+	public void setWaitDAO(WaitDAO waitDAO) {
+		this.waitDAO = waitDAO;
+	}
 
 	public UserDAO getUserDAO() {
 		return userDAO;
@@ -54,6 +67,8 @@ public class LoginController {
 			System.out.println("验证成功");
 			User u = userDAO.queryByName(name, password).get(0);
 			req.getSession().setAttribute("user", u);
+			List<Wait> list = waitDAO.query(1,u.getId());
+			req.getSession().setAttribute("waits", list);
 			return "user";
 			
 		} else {

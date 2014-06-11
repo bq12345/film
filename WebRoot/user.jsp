@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -118,41 +119,16 @@ p#back-to-top a span {
 						<th>URL</th>
 						<th>操作</th>
 					</tr>
-					<tr>
-						<td>电影1</td>
-						<td>成功在美国立足的青年林一（林更新 饰）收到了初恋女友周小栀（周冬雨 饰）寄来的结婚请帖，百感交集的林一准备回国…</td>
-						<td>白强</td>
-						<td>www.douban.com</td>
-						<td><a>修改</a>|<a>删除</a></td>
-					</tr>
-					<tr>
-						<td>电影2</td>
-						<td>成功在美国立足的青年林一（林更新 饰）收到了初恋女友周小栀（周冬雨 饰）寄来的结婚请帖，百感交集的林一准备回国…</td>
-						<td>白强</td>
-						<td>www.douban.com</td>
-						<td><a>修改</a>|<a>删除</a></td>
-					</tr>
-					<tr>
-						<td>电影3</td>
-						<td>成功在美国立足的青年林一（林更新 饰）收到了初恋女友周小栀（周冬雨 饰）寄来的结婚请帖，百感交集的林一准备回国…</td>
-						<td>白强</td>
-						<td>www.douban.com</td>
-						<td><a>修改</a>|<a>删除</a></td>
-					</tr>
-					<tr>
-						<td>电影4</td>
-						<td>成功在美国立足的青年林一（林更新 饰）收到了初恋女友周小栀（周冬雨 饰）寄来的结婚请帖，百感交集的林一准备回国…</td>
-						<td>白强</td>
-						<td>www.douban.com</td>
-						<td><a>修改</a>|<a>删除</a></td>
-					</tr>
-					<tr>
-						<td>电影5</td>
-						<td>成功在美国立足的青年林一（林更新 饰）收到了初恋女友周小栀（周冬雨 饰）寄来的结婚请帖，百感交集的林一准备回国…</td>
-						<td>白强</td>
-						<td>www.douban.com</td>
-						<td><a id="getFilm">修改</a>|<a id="deleteFilm">删除</a></td>
-					</tr>
+					<c:forEach items="${waits}" var="item">
+						<tr>
+							<td>${item.name}</td>
+							<td class="desc">${item.description}</td>
+							<td>${item.director}</td>
+							<td>${item.url}</td>
+							<td><a href="getWait.do?id=${item.id}">修改</a>|<a
+								href="deleteWait.do?id=${item.id}">删除</a></td>
+						</tr>
+					</c:forEach>
 				</table>
 				<ul class="pagination">
 					<li><a href="#">&laquo;</a></li>
@@ -164,8 +140,9 @@ p#back-to-top a span {
 					<li><a href="#">&raquo;</a></li>
 				</ul>
 			</div>
-			<div class="person container" style="height:550px;width: 50%">
-				<form id="updateUser" action="updateUser" method="post">
+			<div id="personPane" class="person container"
+				style="height:550px;width: 50%">
+				<form id="updateUser" action="updateUser.do" method="post">
 					<fieldset>
 						<legend>用户资料更改</legend>
 						<div class="form-group">
@@ -199,8 +176,8 @@ p#back-to-top a span {
 								placeholder="请输入E-mail" required="required" value=${user.email}>
 						</div>
 						<div class="form-group">
-							<label for="update-love">爱好:</label> <span>(选填)</span>
-							<input type="text" name="love" class="form-control"
+							<label for="update-love">爱好:</label> <span>(选填)</span> <input
+								type="text" name="love" class="form-control"
 								placeholder="请输入爱好 用,隔开" value=${user.love}>
 						</div>
 						<br />
@@ -255,13 +232,14 @@ p#back-to-top a span {
 			</div>
 
 
-			<div class="add container" style="height: 620px;width: 50%">
-				<form id="addFilm" action="addFilm.do" method="post">
+			<div id="addPane" class="add container"
+				style="height: 620px;width: 50%">
+				<form id="addFilm" action="addWait.do" method="post">
 					<fieldset>
 						<legend>添加电影</legend>
 						<div class="form-group">
 							<label for="film-name">电影:</label> <span class="text-danger"
-								id="film-name-error" style="display: none">电影应该在5-15位之间</span> <input
+								id="film-name-error" style="display: none">电影应该在2-10位之间</span> <input
 								type="text" id="film-name" name="name" placeholder="请输入电影名称"
 								class="form-control" required="true">
 						</div>
@@ -310,7 +288,7 @@ p#back-to-top a span {
                 }
                 $("#film-name-error").css("display", "none");
                 var name = $("#film-name").val();
-                if (name.length < 5 || name.length > 15) {
+                if (name.length < 2 || name.length > 10) {
                     $("#film-name-error").css("display", "inline");
                     $(this).parent().addClass("has-error");
                     $(this).focus();
@@ -336,7 +314,7 @@ p#back-to-top a span {
                 }
                 $("#film-director-error").css("display", "none");
                 var director = $("#film-director").val();
-                if (director.length<5||director.length>15) {
+                if (director.length<2||director.length>10) {
                     $("#film-director-error").css("display", "inline");
                     $(this).parent().addClass("has-error");
                     $(this).focus();
@@ -350,32 +328,13 @@ p#back-to-top a span {
 	<footer style="text-align: center;">
 		<p>&copy; 电影搜索 2014.All rights reserved</p>
 	</footer>
-	<!-- Modal -->
-	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">用户登录</h4>
-				</div>
-				<div class="modal-body">
-					<input type="text" class="form-control" id="username"
-						placeholder="用户名"> <input type="password"
-						class="form-control" id="password" placeholder="密码">
-				</div>
-				<div class="modal-footer">
-					<span class="text-danger">密码错误</span>
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" id="submit" class="btn btn-primary">登录</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->
+
 	<script type="text/javascript">
     $(document).ready(function () {
+    	var desc=$(".desc").html();
+    	if(desc.length>45){
+    		$(".desc").html(desc.substr(0,45));
+    	}
         $("#logout").click(function () {
             $.get("logout.do", function (data) {
                location.href="index.html";

@@ -322,6 +322,7 @@ textarea {
 a {
   text-decoration: none;
   cursor: pointer;
+  color: #000;
 }
 
 a:hover,
