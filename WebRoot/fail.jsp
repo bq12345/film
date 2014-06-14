@@ -85,7 +85,7 @@ p#back-to-top a span {
 	<div class="container">
 		<div class="col-xs-12" id="page"
 			style="margin-top:200px;text-align: center;min-height: 400px;">
-			<h4 class="text-info text-center" id="jump">J返回主页</h4>
+			<h4 class="text-info text-center" id="jump">返回主页</h4>
 
 		</div>
 	</div>

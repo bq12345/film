@@ -33,11 +33,6 @@
 		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
 	</bean>
 
-	<bean id="film" class="org.bq.controller.FilmController">
-		<property name="dao" ref="filmDAO"></property>
-	</bean>
-
-
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
