@@ -51,6 +51,6 @@ public class AdminController {
 			req.getSession().setAttribute("waits", waits);
 			req.getSession().setAttribute("admin", s);
 		}
-		return "manage";
+		return "redirect:/manage.jsp";
 	}
 }

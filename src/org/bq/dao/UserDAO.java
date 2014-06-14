@@ -28,6 +28,22 @@ public class UserDAO {
 	}
 
 	/**
+	 * Query user by name
+	 * 
+	 * @param name
+	 * @return if name has used is true
+	 */
+	public boolean existName(String name) {
+		String sql = "select id,username,password,age,love,email from user where username = ?";
+		System.out.println("Query SQL---" + sql);
+		Object[] params = new Object[] { name };
+		List<User> list = this.getJdbcTemplate().query(sql,
+				ParameterizedBeanPropertyRowMapper.newInstance(User.class),
+				params);
+		return list.size() > 0;
+	}
+
+	/**
 	 * Query user by name and password
 	 */
 	public List<User> queryByName(String name, String password) {

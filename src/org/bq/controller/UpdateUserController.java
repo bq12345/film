@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2014. Designed By BaiQiang.
+ */
 package org.bq.controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,13 +33,11 @@ public class UpdateUserController {
 	public String execute(HttpServletRequest req, HttpServletResponse res)
 			throws Exception {
 		int id = Integer.parseInt(req.getParameter("id"));
-		String name = req.getParameter("username");
 		String password = req.getParameter("password");
 		int age = Integer.parseInt(req.getParameter("age"));
 		String email = req.getParameter("email");
 		String love = req.getParameter("love");
 		User u = userDAO.getUser(id);
-		u.setUsername(name);
 		u.setAge(age);
 		u.setEmail(email);
 		u.setLove(love);
@@ -44,6 +45,6 @@ public class UpdateUserController {
 		System.out.println("Request_____" + u.toString());
 		userDAO.updateUser(u);
 		req.getSession().setAttribute("user", u);
-		return "user";
+		return "redirect:/user.jsp";
 	}
 }

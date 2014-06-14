@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2014. Designed By BaiQiang.
+ */
 package org.bq.controller;
 
 import java.util.List;
@@ -44,6 +47,6 @@ public class AddWaitController {
 		waitDAO.addWait(w, u.getId());
 		List<Wait> list = waitDAO.query(1, u.getId());
 		req.getSession().setAttribute("waits", list);
-		return "user";
+		return "redirect:/user.jsp";
 	}
 }

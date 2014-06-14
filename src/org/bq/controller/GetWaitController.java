@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2014. Designed By BaiQiang.
+ */
 package org.bq.controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +35,6 @@ public class GetWaitController {
 		int id = Integer.parseInt(req.getParameter("id"));
 		Wait wait = waitDAO.getWait(id);
 		req.getSession().setAttribute("wait", wait);
-		return "update";
+		return "redirect:/update.jsp";
 	}
 }

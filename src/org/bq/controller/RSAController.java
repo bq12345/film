@@ -1,12 +1,13 @@
+/**
+ * Copyright (c) 2014. Designed By BaiQiang.
+ */
 package org.bq.controller;
 
 import java.security.interfaces.RSAPublicKey;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.bq.dao.UserDAO;
 import org.film.util.RSAUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

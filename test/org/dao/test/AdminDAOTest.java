@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2014. Designed By BaiQiang.
+ */
 package org.dao.test;
 
 import java.util.List;
@@ -7,6 +10,10 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ * @author 白强
+ * @version 1.0
+ */
 public class AdminDAOTest {
 
 	@Test

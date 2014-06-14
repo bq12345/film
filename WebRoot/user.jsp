@@ -71,6 +71,7 @@ p#back-to-top a span {
 <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/jquery.smint.js"></script>
+<script type="text/javascript" src="js/xss.js"></script>
 </head>
 
 <body style="background: #dcddcd">
@@ -82,7 +83,7 @@ p#back-to-top a span {
 				<div class="col-md-3">
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav top-nav menu">
-							<li><a href="user.html">个人中心</a></li>
+							<li><a href="user.jsp">个人中心</a></li>
 						</ul>
 					</div>
 				</div>
@@ -97,7 +98,8 @@ p#back-to-top a span {
 				<div class="navbar-form navbar-right">
 					<form>
 						<div class="form-group">
-							<input type=button value="退出" id="logout" class="form-control">
+							<input type=button value="退出" id="logout" class="btn btn-deault">
+							<input type=button value="首页" id="index" class="btn btn-deault">
 						</div>
 					</form>
 				</div>
@@ -153,7 +155,7 @@ p#back-to-top a span {
 								class="text-danger" id="update-username-error"
 								style="display: none">用户名应该在5-15位之间</span> <input type="text"
 								id="update-username" name="username" placeholder="请输入注册的用户名"
-								class="form-control" required="required" value=${user.username}>
+								class="form-control" required="required" value=${user.username} readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="update-password">密码:</label> <span
@@ -301,6 +303,8 @@ p#back-to-top a span {
                 }
                 $("#film-desc-error").css("display", "none");
                 var desc = $("#film-desc").val();
+                desc=filterXSS(desc);
+                $("#film-desc").val(desc);
                 if (desc.length < 30) {
                     $("#film-desc-error").css("display", "inline");
                     $(this).parent().addClass("has-error");
@@ -331,14 +335,20 @@ p#back-to-top a span {
 
 	<script type="text/javascript">
     $(document).ready(function () {
-    	var desc=$(".desc").html();
-    	if(desc.length>45){
-    		$(".desc").html(desc.substr(0,45));
-    	}
+    	var desc=$(".desc");
+    	$.each(desc,function(i,item){
+    		if(item.length>35){
+    			item.html(desc.substr(0,35));
+    		}
+    		
+    	});
         $("#logout").click(function () {
             $.get("logout.do", function (data) {
                location.href="index.html";
             });
+        });
+        $("#index").click(function () {
+               location.href="index.html";
         });
         $('.menu').smint({
             'scrollSpeed': 1000

@@ -7,17 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bq.dao.UserDAO;
-import org.bq.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author 白强
  * @version 1.0
  */
 @Controller
-public class AddUserController {
+public class SignUpController {
 	@Autowired
 	private UserDAO userDAO;
 
@@ -29,19 +29,18 @@ public class AddUserController {
 		this.userDAO = userDAO;
 	}
 
-	@RequestMapping(value = "/addUser.do", produces = { "html/text;charset=UTF-8" })
-	public String execute(HttpServletRequest req, HttpServletResponse res)
+	@RequestMapping(value = "/signUp.do", produces = { "html/text;charset=UTF-8" })
+	public @ResponseBody
+	String execute(HttpServletRequest req, HttpServletResponse res)
 			throws Exception {
-		String name = req.getParameter("username");
-		if(userDAO.existName(name)){
+		String name = req.getParameter("name");
+		name = new String(req.getParameter("name").getBytes("ISO-8859-1"),
+				"utf-8");
+		System.out.println("signUp--------" + name);
+		if (userDAO.existName(name)) {
 			return "fail";
+		} else {
+			return "success";
 		}
-		String password = req.getParameter("password");
-		int age = Integer.parseInt(req.getParameter("age"));
-		String email = req.getParameter("email");
-		User u = new User(name, password, age, "", email);
-		System.out.println("Request_____" + u);
-		userDAO.addUser(u);
-		return "success";
 	}
 }

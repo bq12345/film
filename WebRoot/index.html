@@ -105,6 +105,7 @@ body,h1,h2,h3,h4,p,div,legend {
 		var rsa_n;
 		$(document).ready(function() {
 			$("#login").click(function() {
+				$("#error").html("");
 				$.get("key.do", function(data) {
 					rsa_n = data;
 					console.log("Data Loaded: " + data);
@@ -130,9 +131,12 @@ body,h1,h2,h3,h4,p,div,legend {
 				}, 500);
 			});
 			$("#submit").click(function() {
+				
 				setMaxDigits(131); //131 => n的十六进制位数/2+3
 				var key = new RSAKeyPair("10001", '', rsa_n); //10001 => e的十六进制
 				var password = $("#password").val();
+				if(!$("#username").val()){$("#error").html("请输入用户名");return false;}
+				if(!password){$("#error").html("请输入密码");return false;}
 				password = encryptedString(key, password); //不支持汉字
 				$.post("login.do", {
 					name : $("#username").val(),
