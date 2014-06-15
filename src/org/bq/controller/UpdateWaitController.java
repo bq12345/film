@@ -51,7 +51,7 @@ public class UpdateWaitController {
 		wait.setUrl(url);
 		wait.setWatch(watch);
 		User u = (User) req.getSession().getAttribute("user");
-		waitDAO.updateUser(wait, u.getId());
+		waitDAO.updateWait(wait, u.getId());
 		List<Wait> list = waitDAO.query(1, u.getId());
 		req.getSession().setAttribute("waits", list);
 		return "redirect:/user.jsp";

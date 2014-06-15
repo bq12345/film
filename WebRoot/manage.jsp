@@ -70,7 +70,8 @@ body,h1,h2,h3,h4,p,div,legend,span {
 							<td class="desc">${item.description}</td>
 							<td>${item.director}</td>
 							<td>${item.url}</td>
-							<td><a title="${item.id}">通过</a></td>
+							<td><a title="${item.id}" class="agree">通过</a>|<a
+								title="${item.id}" class="disagree">拒绝</a></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -90,27 +91,70 @@ body,h1,h2,h3,h4,p,div,legend,span {
 		<p>&copy; 电影搜索 2014.All rights reserved</p>
 	</footer>
 	<script type="text/javascript">
+		$().ready(function() {
+			var desc = $(".desc");
+			$.each(desc, function(i, item) {
+				console.log(item);
+				if (item.innerHTML.length > 35) {
+					item.innerHTML = item.innerHTML.substr(0, 35);
+				}
+
+			});
+		});
 		$(function() {
 			$("#logout").click(function() {
 				$.get("logout.do", function(data) {
 					location.href = "index.html";
 				});
 			});
-			$("#table").click(function(e) {
 
-				var target = e.target;
-				if (target.nodeName == 'A') {
-					console.log(e.target.innerHTML);
-					console.log(e.target.path);
-					$.get("agree.do?id=" + e.target.title, function(data) {
-						console.log(data);
-						e.target.innerHTML = "已通过";
-						e.target.className += 'btn btn-sm disabled';
+			$("#table")
+					.click(
+							function(e) {
+								var target = e.target;
+								if (target.nodeName == 'A') {
+									console.log(target);
+									console.log(target.className);
+									if (target.className == "agree") {
+										$
+												.get(
+														"agree.do?id="
+																+ e.target.title,
+														function(data) {
+															if (data == "error") {
+																e.target.parentNode.innerHTML = "出错了";
+																e.target.className += 'btn btn-sm disabled';
+															} else {
+																console
+																		.log(data);
+																e.target.parentNode.innerHTML = "已通过";
+																e.target.className += 'btn btn-sm disabled';
+															}
+														});
+									}
+									if (target.className == "disagree") {
+										$
+												.get(
+														"disagree.do?id="
+																+ e.target.title,
+														function(data) {
+															console.log(data);
+															console
+																	.log(target.parentNode);
+															e.target.parentNode.innerHTML = "已拒绝";
+															e.target.className += 'btn btn-sm disabled';
 
-					});
-					e.preventDefault();
-				}
-			});
+														});
+									}
+									/* $.get("agree.do?id=" + e.target.title, function(data) {
+										console.log(data);
+										e.target.innerHTML = "已通过";
+										e.target.className += 'btn btn-sm disabled';
+
+									}); */
+									e.preventDefault();
+								}
+							});
 		});
 	</script>
 

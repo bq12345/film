@@ -16,12 +16,13 @@ public class Wait {
 	private String director;
 	private String date;
 	private String watch;
+	private int flag;
 
 	public Wait() {
 	}
 
 	public Wait(String name, String url, String description, String director,
-			String date, String watch) {
+			String date, String watch, int flag) {
 		super();
 		this.name = name;
 		this.url = url;
@@ -29,13 +30,15 @@ public class Wait {
 		this.director = director;
 		this.date = date;
 		this.watch = watch;
+		this.flag = flag;
 	}
 
 	@Override
 	public String toString() {
 		return "Wait [id=" + id + ", name=" + name + ", url=" + url
 				+ ", description=" + description + ", director=" + director
-				+ ", date=" + date + ", watch=" + watch + "]";
+				+ ", date=" + date + ", watch=" + watch + ", flag=" + flag
+				+ "]";
 	}
 
 	public int getId() {
@@ -92,6 +95,14 @@ public class Wait {
 
 	public void setWatch(String watch) {
 		this.watch = watch;
+	}
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
 
 }

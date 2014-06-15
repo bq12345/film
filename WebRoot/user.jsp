@@ -120,6 +120,7 @@ p#back-to-top a span {
 						<th>导演</th>
 						<th>URL</th>
 						<th>操作</th>
+						<th>状态</th>
 					</tr>
 					<c:forEach items="${waits}" var="item">
 						<tr>
@@ -129,6 +130,9 @@ p#back-to-top a span {
 							<td>${item.url}</td>
 							<td><a href="getWait.do?id=${item.id}">修改</a>|<a
 								href="deleteWait.do?id=${item.id}">删除</a></td>
+							<td><c:if test="${item.flag == -1}">未通过</c:if> <c:if
+									test="${item.flag == 0}">待处理</c:if></td>
+
 						</tr>
 					</c:forEach>
 				</table>
@@ -155,7 +159,9 @@ p#back-to-top a span {
 								class="text-danger" id="update-username-error"
 								style="display: none">用户名应该在5-15位之间</span> <input type="text"
 								id="update-username" name="username" placeholder="请输入注册的用户名"
-								class="form-control" required="required" value=${user.username} readonly="readonly">
+								class="form-control" required="required"
+								value=${user.username
+								} readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="update-password">密码:</label> <span
@@ -335,13 +341,14 @@ p#back-to-top a span {
 
 	<script type="text/javascript">
     $(document).ready(function () {
-    	var desc=$(".desc");
-    	$.each(desc,function(i,item){
-    		if(item.length>35){
-    			item.html(desc.substr(0,35));
-    		}
-    		
-    	});
+    	var desc = $(".desc");
+		$.each(desc, function(i, item) {
+			console.log(item);
+			if (item.innerHTML.length > 35) {
+				item.innerHTML=item.innerHTML.substr(0, 35);
+			}
+
+		});
         $("#logout").click(function () {
             $.get("logout.do", function (data) {
                location.href="index.html";

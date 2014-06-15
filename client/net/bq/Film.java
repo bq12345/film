@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="photo_link" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="poster_link" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="rate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="runtime" type="{http://service.org/}date" minOccurs="0"/>
+ *         &lt;element name="runtime" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="showtime" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="view_link" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
@@ -73,7 +73,7 @@ public class Film {
     @XmlElement(name = "poster_link")
     protected String posterLink;
     protected String rate;
-    protected Date runtime;
+    protected String runtime;
     protected String showtime;
     @XmlElement(name = "view_link")
     protected String viewLink;
@@ -331,10 +331,10 @@ public class Film {
      * 
      * @return
      *     possible object is
-     *     {@link Date }
+     *     {@link String }
      *     
      */
-    public Date getRuntime() {
+    public String getRuntime() {
         return runtime;
     }
 
@@ -343,10 +343,10 @@ public class Film {
      * 
      * @param value
      *     allowed object is
-     *     {@link Date }
+     *     {@link String }
      *     
      */
-    public void setRuntime(Date value) {
+    public void setRuntime(String value) {
         this.runtime = value;
     }
 
@@ -398,11 +398,4 @@ public class Film {
         this.viewLink = value;
     }
 
-	@Override
-	public String toString() {
-		return "Film [description=" + description + ", director=" + director
-				+ ", filmUrl=" + filmUrl + ", filmId=" + filmId + ", name="
-				+ name + "]";
-	}
-    
 }

@@ -3,6 +3,7 @@
 <head>
     <title>电影搜索</title>
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="image/favicon.ico">
     <link href="css/bootstrap.css" rel="stylesheet">
     <style>
         body, h1, h2, h3, h4, p, div, legend {
@@ -104,6 +105,7 @@
 <script type="text/javascript">
     var rsa_n;
     $(document).ready(function () {
+    	search();
         $("#login").click(function () {
             $("#error").html("");
             $.get("key.do", function (data) {
@@ -199,7 +201,7 @@
                                     + '</p><p>' + "观看地址："
                                     + '<a target="_blank" href="' + urldecode(item.view_link) + '">'
                                     + urldecode(item.view_link) + '</a></p><p>上映日期：<span>'
-                                    + urldecode(item.showtime) + '</span></p><p><img src="getImage.do?image=' + item.photo_link + '"></p></div></div>').appendTo('#result');
+                                    + urldecode(item.showtime) + '</span><span class="col-md-offset-1">评分:'+urldecode(item.rate)+'</span><span class="col-md-offset-1">片长:'+item.runtime+'</span></p><p><img src="getImage.do?image=' + item.photo_link + '"></p></div></div>').appendTo('#result');
                 });
             },
             error: function () {

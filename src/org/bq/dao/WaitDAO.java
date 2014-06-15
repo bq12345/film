@@ -50,7 +50,7 @@ public class WaitDAO {
 		if (p < 1) {
 			p = 1;
 		}
-		String sql = "select id,name,description,date,watch,url,director from wait where sender=? limit "
+		String sql = "select id,name,description,date,watch,url,director,flag from wait where sender=? limit "
 				+ (p - 1) * pageSize + "," + p * pageSize;
 		System.out.println("Query SQL---" + sql);
 		List<Wait> list = this.getJdbcTemplate().query(sql,
@@ -112,8 +112,8 @@ public class WaitDAO {
 	 * @param i
 	 * @param wait
 	 */
-	public void updateUser(final Wait wait, final int id) {
-		String sql = "update wait set name=?,description=?,date=?,watch=?,director=?,url=?,sender=? where id=?";
+	public void updateWait(final Wait wait, final int id) {
+		String sql = "update wait set name=?,description=?,date=?,watch=?,director=?,url=?,sender=?,flag=0 where id=?";
 		jdbcTemplate.update(
 				sql,
 				new Object[] { wait.getName(), wait.getDescription(),
@@ -121,6 +121,20 @@ public class WaitDAO {
 						wait.getUrl(), id, wait.getId() });
 	}
 
+	/**
+	 * Disagree a wait
+	 * 
+	 * @param i
+	 * @param wait
+	 */
+	public void disagreeWait(final Wait wait) {
+		String sql = "update wait set name=?,description=?,date=?,watch=?,director=?,url=?,flag=? where id=?";
+		jdbcTemplate.update(
+				sql,
+				new Object[] { wait.getName(), wait.getDescription(),
+						wait.getDate(), wait.getWatch(), wait.getDirector(),
+						wait.getUrl(), -1, wait.getId() });
+	}
 	/**
 	 * Get bean
 	 * 

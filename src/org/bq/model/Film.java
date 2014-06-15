@@ -3,7 +3,6 @@
  */
 package org.bq.model;
 
-import java.sql.Date;
 
 public class Film {
 
@@ -13,7 +12,7 @@ public class Film {
 	private String description;
 	private String director;
 	private String showtime;
-	private Date runtime;
+	private String runtime;
 	private String language;
 	private String nickname;
 	private String rate;
@@ -83,11 +82,11 @@ public class Film {
 		this.showtime = showtime;
 	}
 
-	public Date getRuntime() {
+	public String getRuntime() {
 		return runtime;
 	}
 
-	public void setRuntime(Date runtime) {
+	public void setRuntime(String runtime) {
 		this.runtime = runtime;
 	}
 

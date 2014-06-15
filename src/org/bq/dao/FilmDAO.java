@@ -47,7 +47,7 @@ public class FilmDAO {
 	 * Query all films by name
 	 */
 	public List<Film> queryByName(String name) {
-		String sql = "select film_id,filmUrl,name,description,director,view_link,showtime,photo_link from film where name like ?  limit 8";
+		String sql = "select film_id,filmUrl,name,description,director,view_link,showtime,photo_link,runtime,nickname,rate from film where name like ?  limit 8";
 		System.out.println("Query SQL---" + sql);
 		Object[] params = new Object[] { "%" + name + "%" };
 		List<Film> list = this.getJdbcTemplate().query(sql,

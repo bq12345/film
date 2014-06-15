@@ -21,16 +21,16 @@ public class Client {
 	}
 
 	public Client() {
-		FilmServiceService service = new FilmServiceService();
-		FilmService handler = service.getFilmServicePort();
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("result:");
-		String name = scanner.next();
-		List<Film> list = handler.search(name);
-		for (Film f : list) {
-			System.out.println(f);
+		while (true) {
+			FilmServiceService service = new FilmServiceService();
+			FilmService handler = service.getFilmServicePort();
+			Scanner scanner = new Scanner(System.in);
+			String name = scanner.next();
+			List<Film> list = handler.search(name);
+			for (Film f : list) {
+				System.out.println(f);
+			}
 		}
-		scanner.close();
 	}
 
 }

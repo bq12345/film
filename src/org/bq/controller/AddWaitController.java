@@ -41,7 +41,7 @@ public class AddWaitController {
 		String director = req.getParameter("director");
 		String watch = req.getParameter("watch");
 		String date = req.getParameter("date");
-		Wait w = new Wait(name, url, desc, director, date, watch);
+		Wait w = new Wait(name, url, desc, director, date, watch ,0);
 		System.out.println("Request_____" + w);
 		User u = (User) req.getSession().getAttribute("user");
 		waitDAO.addWait(w, u.getId());
